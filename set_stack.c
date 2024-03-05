@@ -6,7 +6,7 @@
 /*   By: mvelazqu <mvelazqu@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:34:33 by mvelazqu          #+#    #+#             */
-/*   Updated: 2024/02/25 17:34:19 by mvelazqu         ###   ########.fr       */
+/*   Updated: 2024/03/05 20:37:34 by mvelazqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,19 @@ void	set_target(t_stack *from, t_stack *to)
 void	set_cost(t_stack *stack)
 {
 	t_stack	*to_top;
+	int		middle;
+	int		position;
 
+	middle = stack_len(stack);
+	position = 0;
 	to_top = stack;
 	while (to_top)
 	{
-		to_top->cost = find_cost(stack, to_top);
+		if (position <= middle / 2)
+			to_top->cost = position;
+		else
+			to_top->cost = position - middle;
+		position += 1;
 		to_top = to_top->next;
 	}
 }
